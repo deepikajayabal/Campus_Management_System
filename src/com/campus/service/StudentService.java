@@ -1,6 +1,6 @@
 package com.campus.service;
 
-import Com.campus.model.Student;
+import com.campus.model.Student;
 
 public class StudentService {
     //calculate total marks
@@ -60,14 +60,13 @@ public class StudentService {
     }
     //grade based on marks
 public char grade(Student student) {
-    int[] marks = student.getMarks();
+    int[] marks = student.getmarks();
 
     if (marks == null || marks.length == 0) {
         return 'F';
     }
 
-    int total = calculateTotal(student);
-    int average = (int) calculateAverage(student);
+    int average = (int) calculateAverage(marks);
 
     if (average >= 90) {
         return 'A';
@@ -75,17 +74,21 @@ public char grade(Student student) {
         return 'B';
     } else if (average >= 70) {
         return 'C';
+    } else if (average >= 60) {
+        return 'D';
+    } else {
+        return 'F';
     }
 }
 //pass or fail
 public String passOrFail(Student student) {
-    int[] marks = student.getMarks();
+    int[] marks = student.getmarks();
 
     if (marks == null || marks.length == 0) {
         return "Fail";
     }
 
-    int average = (int) calculateAverage(student);
+    int average = (int) calculateAverage(marks);
 
     if (average >= 40) {
         return "Pass";
@@ -96,14 +99,17 @@ public String passOrFail(Student student) {
 // display report card
 public void displayReportCard(Student student) {
 
-    System.out.println("Student Name: " + student.getStudentname());
-    System.out.println("Student ID: " + student.getStudentId());
-    System.out.println("Department: " + student.getDepartment());
+    int[] marks = student.getmarks();
 
-    System.out.println("Total Marks: " + calculateTotal(student));
-    System.out.println("Average Marks: " + calculateAverage(student));
-    System.out.println("Maximum Marks: " + findMax(student));
-    System.out.println("Minimum Marks: " + findMin(student));
+    System.out.println("Student Name: " + student.getstudentname());
+    System.out.println("Student ID: " + student.getstudentid());
+    System.out.println("Department: " + student.getdepartment());
+
+    System.out.println("Total Marks: " + calculateTotal(marks));
+    System.out.println("Average Marks: " + calculateAverage(marks));
+    System.out.println("Maximum Marks: " + findMax(marks));
+    System.out.println("Minimum Marks: " + findMin(marks));
     System.out.println("Grade: " + grade(student));
     System.out.println("Pass/Fail: " + passOrFail(student));
+}
 }

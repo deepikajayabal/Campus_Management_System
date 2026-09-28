@@ -1,6 +1,6 @@
 package com.campus.model;
 
-public class Student{
+public abstract class Student{
     //Encapsulation
     //instance variables
     private int studentid;
@@ -13,13 +13,13 @@ public class Student{
 static int studentCount=0;
 
 //default constructor
-public student(){
+public Student(){
     studentCount++;
 }
 
 //parameterized constructor
-public student(int studentid,String studentname,int age,String department,int[] marks){
-    this.studentid = studentid
+public Student(int studentid,String studentname,int age,String department,int[] marks){
+    this.studentid = studentid;
     this.studentname = studentname;
     this.age = age;
     this.department = department;
@@ -55,7 +55,7 @@ public void setage(int age){
 public void setdepartment(String department){
     this.department = department;
 }
-public void setmarks(int marks){
+public void setmarks(int[] marks){
     this.marks = marks;
 }
 // instance method - belongs to object
@@ -70,10 +70,10 @@ public void displaystudentinfo(boolean showmarks){
     displaystudentinfo();
 
     if (showmarks){
-        System.out.println("marks:"+java.util.Arrays.toString(marks));
+        System.out.println("marks: " + java.util.Arrays.toString(marks));
     }
 }
-
+public abstract void studentType(); //abstract method - no implementation, must be implemented by subclasses
 //static methods - belongs to class,not to object
 public static void displaystudentCount(){
     System.out.println("total number of student:"+studentCount);
